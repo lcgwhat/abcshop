@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\UserAddress;
+use App\Models\Product;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +41,12 @@ class User extends Authenticatable
 
     public function addresses() {
         return $this->hasMany(UserAddress::class);
+    }
+
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Product::class, 'user_favorite_products')
+            ->withTimestamps()
+            ->orderBy('user_favorite_products.created_at', 'desc');
     }
 }
