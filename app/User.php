@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\CartItem;
 use App\Models\UserAddress;
 use App\Models\Product;
 use Illuminate\Notifications\Notifiable;
@@ -48,5 +49,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'user_favorite_products')
             ->withTimestamps()
             ->orderBy('user_favorite_products.created_at', 'desc');
+    }
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
 }
