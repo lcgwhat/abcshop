@@ -7,6 +7,7 @@ use App\Models\ProductSku;
 use App\Models\UserAddress;
 use App\Models\Order;
 use Carbon\Carbon;
+use App\Exceptions\InvalidRequestException;
 
 class OrdersController extends Controller
 {
@@ -48,6 +49,9 @@ class OrdersController extends Controller
                 $item->productSku()->associate($sku);
                 $item->save();
                 $totalAmount += $sku->price * $data['amount'];
+                if ($sku->decreaseStock($data['amount']) <= 0) {
+                    throw new InvalidRequestException('该商品库存不足');
+                }
             }
 
             // 更新订单总金额
