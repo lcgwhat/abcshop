@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Layout\Content;
 
 class CouponCodesController extends AdminController
 {
@@ -17,6 +18,13 @@ class CouponCodesController extends AdminController
      */
     protected $title = 'App\Models\CouponCode';
 
+
+    public function index(Content $content)
+    {
+        return $content
+            ->header('优惠券列表')
+            ->body($this->grid());
+    }
     /**
      * Make a grid builder.
      *
@@ -26,19 +34,21 @@ class CouponCodesController extends AdminController
     {
         $grid = new Grid(new CouponCode);
 
-        $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('code', __('Code'));
-        $grid->column('type', __('Type'));
-        $grid->column('value', __('Value'));
-        $grid->column('total', __('Total'));
-        $grid->column('used', __('Used'));
-        $grid->column('min_amount', __('Min amount'));
-        $grid->column('not_before', __('Not before'));
-        $grid->column('not_after', __('Not after'));
-        $grid->column('enabled', __('Enabled'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->model()->orderBy('created_at', 'desc');
+        $grid->id('ID')->sortable();
+        $grid->name('名称');
+        $grid->code('优惠码');
+        $grid->description('描述');
+        $grid->column('usage', '用量')->display(function ($value) {
+            return "{$this->used} / {$this->total}";
+        });
+        $grid->enabled('是否启用')->display(function ($value) {
+            return $value ? '是' : '否';
+        });
+        $grid->created_at('创建时间');
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
 
         return $grid;
     }
