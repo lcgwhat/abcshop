@@ -170,6 +170,7 @@
                 });
                 axios.post('{{ route('orders.store') }}', req)
                     .then(function (response) {
+                        console.log(response)
                         swal('订单提交成功', '', 'success')
                             .then(() => {
                             location.href = '/orders/' + response.data.id;

@@ -20,6 +20,16 @@ use App\Exceptions\CouponCodeUnavailableException;
 
 class OrderService
 {
+    /**
+     * @param User $user
+     * @param UserAddress $address
+     * @param $remark
+     * @param $items
+     * @param CouponCode|null $coupon
+     * @return Order
+     * @throws CouponCodeUnavailableException
+     * @throws InvalidRequestException
+     */
     public function store(User $user, UserAddress $address, $remark, $items,CouponCode $coupon = null)
     {
 

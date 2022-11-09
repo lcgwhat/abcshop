@@ -4,6 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Order
+ * @property   int  $id
+ * @property   string  $no
+ * @property   int  $user_id
+ * @property   string  $address
+ * @property   float  $total_amount
+ * @property   string  $remark
+ * @property   string  $paid_at
+ * @property   int  $coupon_code_id
+ * @property   string  $payment_method
+ * @property   string  $payment_no
+ * @property   string  $refund_status
+ * @property   string  $refund_no
+ * @property   int  $closed
+ * @property   int  $reviewed
+ * @property   string  $ship_status
+ * @property   string  $ship_data
+ * @property   string  $extra
+ * @property   \Carbon\Carbon  $created_at
+ * @property   \Carbon\Carbon  $updated_at
+
+ * @package App\Models
+ */
 class Order extends Model
 {
     const REFUND_STATUS_PENDING = 'pending';
