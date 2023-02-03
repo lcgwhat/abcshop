@@ -11,7 +11,7 @@
                             <img class="cover" src="{{ $product->image_url }}" alt="">
                         </div>
                         <div class="col-7">
-                            <div class="title">{{ $product->title }}</div>
+                            <div class="title">{{ $product->long_title ?: $product->title }}</div>
                             <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
                             <div class="sales_and_reviews">
                                 <div class="sold_count">累计销量 <span class="count">{{ $product->sold_count }}</span></div>
@@ -56,9 +56,20 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="product-detail-tab">
-                                {!! $product->description !!}
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="product-reviews-tab">
+                                <!-- 产品属性开始 -->
+                                <div class="properties-list">
+                                    <div class="properties-list-title">产品参数：</div>
+                                    <ul class="properties-list-body">
+                                        @foreach($product->grouped_properties as $name => $values)
+                                            <li>{{ $name }}：{{ join(' ', $values) }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- 产品属性结束 -->
+                                <!-- 在商品描述外面包了一层 div -->
+                                <div class="product-description">
+                                    {!! $product->description !!}
+                                </div>
                             </div>
                         </div>
                     </div>

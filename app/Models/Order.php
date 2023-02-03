@@ -83,6 +83,7 @@ class Order extends Model
         'paid_at',
     ];
 
+
     public function couponCode()
     {
         return $this->belongsTo(CouponCode::class);
