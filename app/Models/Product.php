@@ -46,4 +46,8 @@ class Product extends Model
                 return $properties->pluck('value')->all();
             });
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
