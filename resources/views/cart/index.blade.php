@@ -116,7 +116,8 @@
                         if (!willDelete) {
                             return;
                         }
-                        axios.delete('/cart/' + id)
+                        let url = "<?php echo url('cart') ?>";
+                        axios.delete(url +'/'+ id)
                             .then(function () {
                                 location.reload();
                             })
@@ -173,7 +174,8 @@
                         console.log(response)
                         swal('订单提交成功', '', 'success')
                             .then(() => {
-                            location.href = '/orders/' + response.data.id;
+                            var url = '<?php echo url('orders')?>'
+                            location.href = url+'/' + response.data.id;
                         });
                     }, function (error) {
                         if (error.response.status === 422) {
