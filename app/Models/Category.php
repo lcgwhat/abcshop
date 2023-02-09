@@ -3,8 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-
+/**
+* @property   int  $id
+* @property   string  $name
+* @property   int  $parent_id
+* @property   int  $is_directory
+* @property   int  $level
+* @property   string  $path
+* @property   \Carbon\Carbon  $created_at
+* @property   \Carbon\Carbon  $updated_at
+**/
 class Category extends Model
 {
     protected $fillable = ['name', 'is_directory', 'level', 'path'];
