@@ -18,6 +18,12 @@ class SkuController extends AdminController
      */
     protected $title = 'ProductSku';
 
+    public function index(Content $content)
+    {
+        return $content->header('sku列表')
+            ->body($this->grid());
+    }
+
     public function edit($id, Content $content)
     {
         return $content
@@ -35,11 +41,24 @@ class SkuController extends AdminController
         $grid = new Grid(new ProductSku());
 
         $grid->column('id', __('Id'));
+        $grid->column('product', __('产品'))->display(function ($product){
+            return $product['title'];
+        });
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
         $grid->column('price', __('Price'));
         $grid->column('stock', __('Stock'));
-        $grid->column('product_id', __('Product id'));
+        $grid->column('options', __('sku规格'))->display(function ($options){
+            if (count($options) > 0){
+                $strOption = '';
+                foreach ($options as $option) {
+                    $strOption .= "<p>{$option['product_property_name']}:{$option['product_property_value']}</p>";
+                }
+                return $strOption;
+            }
+            return '';
+        });
+
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
