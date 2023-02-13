@@ -51,7 +51,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function toEs(){
+    public function options(){
+        // return $this->hasMany();
+    }
+    public function toESArray(){
         // 只取出需要的字段
         $arr = Arr::only($this->toArray(), [
             'id',
