@@ -38,4 +38,8 @@ class ProductSku extends Model
         }
         $this->increment('stock', $amount);
     }
+
+    public function options(){
+        return $this->hasMany(ProductSkuOption::class, 'sku_id', 'id');
+    }
 }

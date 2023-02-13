@@ -17,4 +17,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSaleProperty extends Model
 {
     protected $table = 'product_sale_property';
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

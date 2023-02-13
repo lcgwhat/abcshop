@@ -18,4 +18,6 @@ class ProductSkuOption extends Model
 {
     protected $table = 'product_sku_option';
     protected $fillable = ['product_property_id', 'product_property_name','product_property_value_id','product_property_value'];
+
+
 }

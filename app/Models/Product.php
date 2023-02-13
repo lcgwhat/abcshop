@@ -51,8 +51,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function options(){
-        // return $this->hasMany();
+    public function saleProperties(){
+        return $this->hasMany(ProductSaleProperty::class,'product_id', 'id');
     }
     public function toESArray(){
         // 只取出需要的字段

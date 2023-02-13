@@ -37,4 +37,11 @@ Route::group([
     $router->put('categories/{id}', 'CategoriesController@update');
     $router->delete('categories/{id}', 'CategoriesController@destroy');
     $router->get('api/categories', 'CategoriesController@apiIndex');
+
+    $router->get('sku', 'SkuController@index');
+    $router->get('sku/create', 'SkuController@create');
+    $router->get('sku/{id}/edit', 'SkuController@edit');
+    $router->post('sku', 'SkuController@store');
+    $router->put('sku/{id}', 'SkuController@update');
+    $router->delete('sku/{id}', 'SkuController@destroy');
 });
