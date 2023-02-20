@@ -6,6 +6,10 @@ composer install
 
 laravel-admin 文档: https://www.laravel-admin.org/docs/zh/1.x/model-grid
 
+
+多规格sku
+https://blog.csdn.net/haibo1101/article/details/115397089
+
 ## 产品sku多属性设计
 产品拥有 销售属性，
 多个销售属性组合成一个sku.

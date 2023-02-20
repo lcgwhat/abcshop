@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Services\AddProductSkuForm;
+use App\Models\Product;
 use App\Models\ProductSku;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -22,6 +24,12 @@ class SkuController extends AdminController
     {
         return $content->header('sku列表')
             ->body($this->grid());
+    }
+
+    public function create(Content $content)
+    {
+        $content->title('新增产品sku');
+        return $content->view('admin.create_product');
     }
 
     public function edit($id, Content $content)
@@ -94,13 +102,15 @@ class SkuController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new ProductSku());
+        $form = new Form(new Product());
 
-        $form->text('title', __('Title'));
-        $form->text('description', __('Description'));
-        $form->decimal('price', __('Price'));
-        $form->number('stock', __('Stock'));
-        $form->number('product_id', __('Product id'));
+        $form->text('product_id', __('产品'));
+        $form->hasMany('saleProperty', '销售属性', function (Form\NestedForm $form){
+            $form->text('name','销售属性名称')->rules('required');
+            $form->hasMany('salePropertyValues', function (Form\NestedForm $form){
+               $form->text('value','销售属性值');
+            });
+        });
 
         return $form;
     }
