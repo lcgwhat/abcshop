@@ -49,8 +49,8 @@ class OrdersController extends Controller
         }
         // 参数中加入 $coupon 变量
         $order = $orderService->store($user, $address, $request->input('remark'), $request->input('items'), $coupon);
-
-        return ['url'=>route('orders.show', ['order'=>$order->id])];
+        return action('OrdersController@show', ['order'=>$order->id]);
+        //return ['url'=>route('orders.show', ['order'=>$order->id])];
     }
 
 

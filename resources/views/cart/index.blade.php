@@ -175,7 +175,7 @@
                         swal('订单提交成功', '', 'success')
                             .then(() => {
                             var url = '<?php echo url('orders')?>'
-                            location.href = url+'/' + response.data.id;
+                            location.href = response.data;
                         });
                     }, function (error) {
                         if (error.response.status === 422) {

@@ -11,6 +11,7 @@
 |
 */
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('alipay', function() {
@@ -26,6 +27,8 @@ Auth::routes();
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('/', 'ProductsController@index')->name('products.index');
 Route::get('/test', function (){
+    dispatch((new \App\Jobs\Demo(12,10))->onQueue('high'));
+    echo '<br>';
     echo route('orders.show', ['order'=>1]);
 });
 // auth 中间件代表需要登录，verified中间件代表需要经过邮箱验证
