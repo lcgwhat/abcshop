@@ -25,7 +25,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property   string  $extra
  * @property   \Carbon\Carbon  $created_at
  * @property   \Carbon\Carbon  $updated_at
-
  * @package App\Models
  */
 class Order extends Model
@@ -132,5 +131,13 @@ class Order extends Model
         \Log::warning('find order no failed');
 
         return false;
+    }
+
+    /**
+     * @param $id
+     * @return Order|null
+     */
+    public static function findById($id){
+       return self::query()->where('id', $id)->first();
     }
 }

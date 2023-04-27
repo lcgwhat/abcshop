@@ -17,6 +17,7 @@ use App\Jobs\CloseOrder;
 use Carbon\Carbon;
 use App\Models\CouponCode;
 use App\Exceptions\CouponCodeUnavailableException;
+use Illuminate\Support\Facades\App;
 
 class OrderService
 {
@@ -32,7 +33,6 @@ class OrderService
      */
     public function store(User $user, UserAddress $address, $remark, $items,CouponCode $coupon = null)
     {
-
         // 如果传入了优惠券，则先检查是否可用
         if ($coupon) {
             $coupon->checkAvailable($user);

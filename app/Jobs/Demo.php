@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\Order;
+use App\Services\gift\GiftService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -31,8 +33,12 @@ class Demo implements ShouldQueue
      */
     public function handle()
     {
-       echo csrf_token();
-       echo '<br>';
+
+//,dispatch()
+        //
+        $order = Order::findById(1);
+        $gift = new GiftService($order);
+        $gift->presenting();
         echo $this->number;
     }
 }

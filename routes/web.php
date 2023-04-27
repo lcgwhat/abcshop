@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('/', 'ProductsController@index')->name('products.index');
 Route::get('/test', function (){
-    dispatch((new \App\Jobs\Demo(12,10))->onQueue('high'));
+    dispatch((new \App\Jobs\Demo(12,10)));
     echo '<br>';
     echo route('orders.show', ['order'=>1]);
 });
